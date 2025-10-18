@@ -1,0 +1,54 @@
+﻿<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <title>Lettre — Demeure historique</title>
+  <!-- le script PowerShell remplacera ce <link> par l'injection de styles.css -->
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    /* Espacements fixes (compatibles wkhtmltopdf) */
+    .date{ text-align:right; margin: 0 0 18mm 0; }
+    .dest{ white-space: pre-line; margin: 0 0 16mm 0; }
+    h1{ text-align:center; font-size:22pt; line-height:1.2; margin:0 0 12mm 0; }
+    h2{ font-size:13.5pt; margin: 6mm 0 4mm 0; }
+    p{ margin: 0 0 6mm 0; }
+    ul{ margin: 0 0 6mm 22px; }
+    li{ margin: 0 0 3mm 0; }
+    .closing{ margin-top: 12mm; }
+    .signature{ margin-top: 6mm; }
+  </style>
+</head>
+<body>
+  <div class="date">{DATE}</div>
+
+  <div class="dest">
+    {CIVILITE} {NOM}
+    {ADRESSE}
+    {CP} {VILLE}<br><br><br>
+  </div>
+
+  <h1>Objet : Révélation du Caractère Unique de Votre Demeure Historique</h1><br><br>
+
+  <p>{CIVILITE} {NOM},</p>
+
+  <p>Votre demeure se distingue par son riche héritage et son élégance intemporelle, incarnant un chapitre vivant du passé. Chez Éloge, nous sommes passionnés par la mise en valeur de résidences empreintes de caractère comme la vôtre. Notre savoir-faire : des menuiseries et ouvertures sur-mesure qui révèlent l’âme des maisons anciennes, tout en intégrant avec discrétion les performances d’aujourd’hui.</p>
+
+  <h2>Notre expertise pour votre demeure historique :</h2>
+  <ul>
+    <li><strong>Menuiseries &amp; ouvertures sur-mesure :</strong> portes, fenêtres, boiseries, profils adaptés au bâti ancien, finitions pérennes.</li>
+    <li><strong>Portails &amp; clôtures :</strong> bois ou ferronnerie, dessinés en harmonie avec la pierre et les proportions existantes.</li>
+    <li><strong>Charpentes &amp; structures :</strong> interventions traditionnelles, consolidation et reprises dans le respect de l’ouvrage.</li>
+    <li><strong>Isolation compatible bâti ancien :</strong> solutions performantes et réversibles, sans dénaturer.</li>
+    <li><strong>Extensions :</strong> volumes et matériaux pensés pour dialoguer avec l’existant, sans rompre l’équilibre.</li>
+  </ul>
+
+  <p>Nous serions honorés de collaborer avec vous pour faire resplendir votre demeure.
+  Pour une visite gratuite et sans engagement, n’hésitez pas à nous contacter. Une rencontre sur place nous permettra de comprendre vos attentes et d’esquisser des pistes adaptées.</p>
+
+  <p class="closing">Dans l’attente de cette opportunité,<br>
+  Cordialement,</p>
+
+  <p class="signature">Jérôme Tayon et Marc-Antoine Gerbaud<br>
+  pour MAG Éloge Menuiserie</p>
+</body>
+</html>

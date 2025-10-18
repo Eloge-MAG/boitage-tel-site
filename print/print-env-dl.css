@@ -1,0 +1,8 @@
+@media print { @page { size: 220mm 110mm; margin: 8mm 10mm; } html, body { width: 220mm; height: 110mm; margin: 0; padding: 0; } }
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; width: 220mm; height: 110mm; font-family: "Montserrat","Segoe UI",Arial,sans-serif; font-size: 12pt; line-height: 1.35; color: #111; background: #fff; }
+.envelope-dl { position: relative; width: 100%; height: 100%; padding: 36mm 24mm 28mm 120mm; display: flex; align-items: flex-start; justify-content: flex-start; }
+.recipient-block { max-width: 78mm; word-wrap: break-word; }
+.recipient-name { font-weight: 600; margin: 0 0 4mm 0; text-transform: uppercase; letter-spacing: 0.6px; }
+.recipient-address, .recipient-city { margin: 0 0 3mm 0; }
+.recipient-city { font-weight: 500; text-transform: uppercase; letter-spacing: 0.4px; }

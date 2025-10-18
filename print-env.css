@@ -1,0 +1,52 @@
+
+/* === Envelope A4 hard sizing & centering (DL block) === */
+@media print {
+  @page { size: A4 landscape; margin: 0; }
+
+  html, body {
+    width: 297mm;
+    height: 210mm;
+    margin: 0;
+    padding: 0;
+  }
+
+  /* Normalize any inherited scaling on the print canvas */
+  html, body, .dl-sheet, .env-block {
+    font-size: 100%;
+    transform: none !important;
+  }
+
+  /* Hide corner marks / guides on print */
+  .dl-mark { display: none !important; }
+
+  /* Full-page sheet */
+  .dl-sheet {
+    position: relative;
+    width: 297mm;
+    height: 210mm;
+  }
+
+  /* DL block centered: 220 x 114 mm */
+  .dl-address {
+    position: absolute;
+    width: 220mm;
+    height: 114mm;
+    left: calc((297mm - 220mm) / 2);
+    top:  calc((210mm - 114mm) / 2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+  }
+
+  /* Bigger, readable typography inside the address */
+  .dl-address, .dl-address * {
+    font-size: 18pt;
+    line-height: 1.45;
+    font-weight: 400;
+  }
+}
+/* === End hard sizing === */

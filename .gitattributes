@@ -1,0 +1,21 @@
+# ? texte: LF dans le repo (d?j? en place) ?
+* text=auto eol=lf
+*.html text eol=lf
+*.css  text eol=lf
+*.js   text eol=lf
+*.json text eol=lf
+*.yml  text eol=lf
+*.md   text eol=lf
+*.ps1  text eol=crlf
+*.bat  text eol=crlf
+
+# ? binaires: jamais de conversion ?
+*.ttf  -text
+*.otf  -text
+*.woff -text
+*.woff2 -text
+*.png  -text
+*.jpg  -text
+*.jpeg -text
+*.ico  -text
+*.pdf  -text
