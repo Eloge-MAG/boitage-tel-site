@@ -1,0 +1,124 @@
+﻿@font-face{
+  font-family: 'Timeless';
+  src: url('fonts/Timeless.ttf') format('truetype');
+  font-weight: 400; font-style: normal; font-display: swap;
+}
+@font-face{
+  font-family: 'Timeless';
+  src: url('fonts/Timeless-Bold.ttf') format('truetype');
+  font-weight: 700; font-style: normal; font-display: swap;
+}
+@font-face{
+  font-family: 'Noto Sans';
+  src: url('fonts/NotoSans-Regular.woff2') format('woff2'),
+       url('fonts/NotoSans-Regular.ttf') format('truetype');
+  font-weight: 400; font-style: normal; font-display: swap;
+}
+@font-face{
+  font-family: 'Noto Sans';
+  src: url('fonts/NotoSans-Bold.woff2') format('woff2'),
+       url('fonts/NotoSans-Bold.ttf') format('truetype');
+  font-weight: 700; font-style: normal; font-display: swap;
+}
+
+html, body { margin: 0; padding: 0; }
+body { font-family: 'Timeless','Times New Roman',Times,serif; font-size:  12.5pt; line-height:  1.34; color:#111; }
+
+body.historique, body.rurale {
+  font-family: 'Timeless','Times New Roman',Times,serif !important;
+}
+body.modern, body.moderne {
+  font-family: 'Noto Sans', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif !important;
+  font-weight: 400 !important;
+}
+body.modern h1, body.modern h2, body.moderne h1, body.moderne h2 { font-weight: 700 !important; }
+
+/* Envelope address font for Moderne (targeted, no override) */
+body.modern .dl-address,
+body.modern .dl-sender {
+  font-family: 'Noto Sans', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  font-weight: 400;
+}
+
+/* --- Force Noto Sans for ENVELOPPE when 'modern' is selected --- */
+body.modern .dl-sheet,
+body.modern .dl-address,
+body.modern .dl-sender {
+  font-family: 'Noto Sans', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif !important;
+  font-weight: 400 !important;
+}
+/* --- End override --- */
+
+
+h1 { font-size:  16.5pt; line-height: 1.2; margin: 0 0 8mm 0; text-align: left; }
+.dest, .address { white-space: pre-line; line-height: 1.2; margin: 0 0 10mm 0; }
+
+ul { margin: 0 0 4mm 18px; }
+li { margin: 0 0 2mm 0; line-height: 1.35; }
+
+.ver{
+  position:fixed; top:8px; right:10px;
+  font: 12px/1.2 system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+  background:#222; color:#fff; padding:4px 6px; border-radius:4px;
+  opacity:.85; z-index:9999;
+}
+
+.dl-sheet, .dl-address, .dl-sender { font-family: inherit; font-size: inherit; line-height: inherit; }
+
+@media print {
+  @page { size: A4 portrait; margin: 16mm 22mm 16mm 22mm; }
+
+  body { -webkit-print-color-adjust: exact; print-color-adjust: exact;
+         font-size: 12.5pt !important; line-height: 1.34 !important; }
+
+  .date { margin: 0 0 4mm 0 !important; }
+  .dest { margin: 0 0 4mm 0 !important; line-height: 1.06 !important; white-space: pre-line !important; }
+
+  h1 { font-size: 16.5pt !important; line-height: 1.12 !important;
+       margin: 0 0 5mm 0 !important; text-align: left !important; page-break-after: avoid !important; }
+  h2 { font-size: 11pt !important; margin: 3.5mm 0 2.5mm 0 !important; }
+
+  p  { margin: 0 0 3.2mm 0 !important; page-break-inside: avoid !important; }
+  ul { margin: 0 0 2.6mm 16px !important; page-break-inside: avoid !important; }
+  li { margin: 0 0 1.2mm 0 !important; line-height: 1.24 !important; page-break-inside: avoid !important; }
+
+  .closing   { margin-top: 5mm !important; page-break-inside: avoid !important; }
+  .signature { margin-top: 3mm !important; page-break-inside: avoid !important; }
+
+  h1, h2, p, ul, li, .dest, .closing, .signature { break-inside: avoid !important; page-break-inside: avoid !important; }
+  .closing, .signature { break-before: avoid !important; page-break-before: avoid !important; }
+
+  .actions, .ver, nav, header, footer { display: none !important; }
+}
+
+.env-page {
+  width: 100vw;
+  height: 100vh;
+}
+.env-dl {
+  width: 220mm;
+  height: 110mm;
+  box-sizing: border-box;
+  margin: 0 auto;
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+  border: 0.3mm solid transparent; display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.env-block {
+  font-family: 'Timeless','Segoe UI','Arial',sans-serif;
+  font-size: 12pt;
+  line-height: 1.35;
+  text-align: center;
+}
+.crop {
+  position: absolute;
+  width: 4mm; height: 4mm;
+  border: 0.25mm solid #000;
+}
+.crop.tl { left: 2mm; top: 2mm; border-right: none; border-bottom: none; }
+.crop.tr { right: 2mm; top: 2mm; border-left: none; border-bottom: none; }
+.crop.bl { left: 2mm; bottom: 2mm; border-right: none; border-top: none; }
+.crop.br { right: 2mm; bottom: 2mm; border-left: none; border-top: none; }

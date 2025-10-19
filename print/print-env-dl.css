@@ -1,0 +1,90 @@
+/* ===============================
+   Enveloppe DL — 220 x 110 mm
+   Impression réelle (Android/desktop)
+   =============================== */
+
+/* On laisse l'imprimante gérer le format DL réel */
+@media print {
+  @page {
+    size: 220mm 110mm; /* DL */
+    margin: 0;         /* pas de marge implicite */
+  }
+}
+
+/* === Réglages rapides (ajuste seulement ces variables) === */
+:root{
+  /* Position du bloc adresse depuis les bords haut/gauche */
+  --addr-top:   36mm;
+  --addr-left:  120mm;
+
+  /* Largeur max du bloc adresse */
+  --addr-width: 78mm;
+
+  /* Espacement vertical entre lignes */
+  --addr-gap:   3mm;
+
+  /* Débogage visuel (guides) : 0 = off, 1 = on */
+  --debug: 0;
+}
+
+/* Page */
+html, body{
+  margin: 0;
+  padding: 0;
+  width: 220mm;
+  height: 110mm;
+  background: #fff;
+  color: #111;
+  font: 12pt/1.35 "Montserrat","Segoe UI",Arial,sans-serif;
+}
+
+/* Feuille */
+.envelope-dl{
+  position: relative;
+  width: 220mm;
+  height: 110mm;
+}
+
+/* Bloc destinataire positionné au mm */
+.recipient-block{
+  position: absolute;
+  top:  var(--addr-top);
+  left: var(--addr-left);
+  width: var(--addr-width);
+  max-width: var(--addr-width);
+  display: grid;
+  grid-auto-rows: max-content;
+  row-gap: var(--addr-gap);
+  word-break: break-word;
+}
+
+/* Typo */
+.recipient-name{
+  margin: 0;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: .4px;
+}
+.recipient-address,
+.recipient-city{
+  margin: 0;
+}
+.recipient-city{
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: .3px;
+}
+
+/* Guides optionnels pour mise au point (ne s'impriment pas si --debug:0) */
+.envelope-dl::before{
+  content:"";
+  position:absolute; inset:0;
+  outline: calc(var(--debug) * 1px) dashed #89c;
+  pointer-events:none;
+}
+.recipient-block::before{
+  content:"";
+  position:absolute; inset:-2mm;
+  outline: calc(var(--debug) * 1px) solid #d88;
+  pointer-events:none;
+}

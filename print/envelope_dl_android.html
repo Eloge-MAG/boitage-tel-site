@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <title>Enveloppe DL — Impression Android</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- styles communs de l'app + style spécifique enveloppe DL -->
+  <link rel="stylesheet" href="../styles.css?v={APP_VERSION}">
+  <link rel="stylesheet" href="print-env-dl.css?v={APP_VERSION}">
+</head>
+<body class="{SEGMENT_CLASS}">
+  <main class="envelope-dl">
+    <!-- Bloc destinataire (rempli par tokens) -->
+    <section class="recipient-block">
+      <p class="recipient-name">{CIVILITE} {NOM} {PRENOM}</p>
+      <p class="recipient-address">{ADRESSE}</p>
+      <p class="recipient-city">{CP} {VILLE}</p>
+    </section>
+  </main>
+
+  <!-- Auto-print si ouvert directement (openAndPrint n’injectera pas de doublon) -->
+  <script>
+    (function () {
+      function go(){ try { window.focus(); setTimeout(function(){ window.print(); }, 120); } catch(e) {} }
+      if (document.readyState !== "complete") window.addEventListener("load", go);
+      else go();
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <title>Lettre — Villa moderne</title>
+  <!-- ton script PowerShell remplacera ce <link> par l'injection de styles.css -->
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    /* Espacements fixes (compatibles wkhtmltopdf) */
+    .date{ text-align:right; margin: 0 0 18mm 0; }
+    .dest{ white-space: pre-line; margin: 0 0 16mm 0; }
+    h1{ text-align:center; font-size:22pt; line-height:1.2; margin:0 0 12mm 0; }
+    h2{ font-size:13.5pt; margin: 6mm 0 4mm 0; }
+    p{ margin: 0 0 6mm 0; }
+    ul{ margin: 0 0 6mm 22px; }
+    li{ margin: 0 0 3mm 0; }
+    .closing{ margin-top: 12mm; }
+    .signature{ margin-top: 6mm; }
+  </style>
+</head>
+<body class="modern">
+  <div class="date">{DATE}</div>
+
+  <div class="dest">
+    {CIVILITE} {NOM}
+    {ADRESSE}
+    {CP} {VILLE}<br><br>
+  </div>
+
+  <h1>Objet : Modernité &amp; Prestige — Menuiseries d’exception pour votre villa</h1><br>
+
+  <p>{CIVILITE} {NOM},</p>
+
+  <p>Votre villa exprime une vision architecturale résolument contemporaine. Chez Éloge, nous mettons notre exigence au service de cette modernité : des menuiseries et ouvertures de précision qui soulignent les lignes de votre maison, tout en apportant performances, confort et discrétion technique.</p>
+
+  <h2>Notre expertise — pensée pour l’architecture contemporaine :</h2>
+  <ul>
+    <li><strong>Menuiseries &amp; ouvertures sur-mesure :</strong> baies coulissantes XXL (alu/acier/bois), ensembles vitrés hautes performances, seuils affleurants (PMR), quincailleries invisibles.</li>
+    <li><strong>Portails &amp; clôtures :</strong> designs actuels en alu/acier, motorisations discrètes, contrôle d’accès intégré.</li>
+    <li><strong>Charpentes &amp; structures :</strong> terrasses/toitures plates bois, renforts grandes portées, verrières structurelles.</li>
+    <li><strong>Isolation haute performance :</strong> ITE/ITI compatibles architectures modernes, étanchéité à l’air soignée, confort d’été.</li>
+    <li><strong>Extensions &amp; volumes :</strong> cubes, patios, pergolas bioclimatiques, carports/auvents, parfaitement harmonisés aux lignes existantes.</li>
+    <li><strong>Détails qui comptent :</strong> BSO/occultations, garde-corps minimalistes, intégration domotique.</li>
+  </ul>
+
+  <p>Nous serions honorés de collaborer avec vous pour faire resplendir votre demeure.
+  Pour une visite gratuite et sans engagement, n’hésitez pas à nous contacter. Une rencontre sur place nous permettra de comprendre vos attentes et d’esquisser des pistes adaptées.</p>
+
+  <p class="closing">Dans l’attente de cette opportunité,<br>
+  Cordialement,</p>
+
+  <p class="signature">Jérôme Tayon et Marc-Antoine Gerbaud<br>
+  pour MAG Éloge Menuiserie</p>
+</body>
+</html>

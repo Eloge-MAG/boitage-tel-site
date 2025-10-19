@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <!-- version du build (utile pour badge en haut à droite) -->
+  <meta name="app-version" content="2025.10.19-18.19.41">
+
+  <title>Éloge — Lettre & Enveloppe</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="styles.css?v=2025.10.19-18.19.41">
+
+  <style>
+    /* Petit style formulaire (visuel) — rien d’imprimable ici */
+    .wrap{max-width:720px;margin:24px auto;padding:16px}
+    .row{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:12px}
+    label{display:block;font-size:14px;margin-bottom:4px}
+    input, select, textarea{width:100%;padding:8px 10px;font-size:16px}
+    textarea{min-height:96px}
+    .col-2{flex:1}
+    .actions{display:flex;gap:12px;margin-top:16px}
+    button{padding:10px 14px;font-size:16px;cursor:pointer}
+    .required::after{content:" *";color:#c00}
+
+    /* badge version */
+    .ver{position:fixed;right:12px;top:12px;font:12px/1 system-ui,Segoe UI,Roboto,Arial;color:#666;background:#f2f2f2;padding:4px 6px;border-radius:4px}
+
+    /* lien utilitaire (test) */
+    .force-update{
+      position:fixed;left:8px;bottom:8px;
+      font:12px system-ui;opacity:.7;text-decoration:none;
+    }
+  </style>
+
+  <!-- === PDF client: librairie tout-en-un (html2canvas + jsPDF) === -->
+  <script src="https://cdn.jsdelivr.net/npm/html2pdf.js@0.10.1/dist/html2pdf.bundle.min.js"></script>
+
+  <!-- IMPORTANT: charge app.js avec la version dynamique -->
+  <script defer src="app.js?v={APP_VERSION}"></script>
+
+  <!-- PWA -->
+  <link rel="manifest" href="manifest.webmanifest?v={APP_VERSION}">
+  <meta name="theme-color" content="#111111">
+
+  <script>
+    // --- utilitaire: purge SW + caches puis rechargement
+    async function forceUpdateAndReload(){
+      try{
+        if ('serviceWorker' in navigator){
+          const regs = await navigator.serviceWorker.getRegistrations();
+          await Promise.all(regs.map(r => r.unregister()));
+        }
+        if ('caches' in window){
+          const keys = await caches.keys();
+          await Promise.all(keys.map(k => caches.delete(k)));
+        }
+      }catch(e){}
+      location.reload(true);
+    }
+    // Raccourci clavier: Ctrl + Alt + U
+    window.addEventListener('keydown', (e)=>{
+      if(e.ctrlKey && e.altKey && (e.key === 'u' || e.key === 'U')){
+        e.preventDefault();
+        forceUpdateAndReload();
+      }
+    });
+
+    // Badge version + enregistrement SW (prod uniquement)
+    document.addEventListener('DOMContentLoaded', () => {
+      // Badge version depuis <meta name="app-version">
+      const v = (document.querySelector('meta[name="app-version"]')?.content || '').trim();
+      const span = document.getElementById('v');
+      if (v && span) span.textContent = v;
+
+      // PROD = domaine github.io -> on enregistre le SW
+      const isProd = location.hostname.endsWith('github.io');
+
+      if (isProd && 'serviceWorker' in navigator) {
+        navigator.serviceWorker.register('./sw.js', { updateViaCache:'none' })
+          .catch(console.warn);
+      } else {
+        // En dev / préview: on désactive tout SW + on nettoie le cache
+        if ('serviceWorker' in navigator) {
+          navigator.serviceWorker.getRegistrations()
+            .then(regs => regs.forEach(r => r.unregister()))
+            .catch(()=>{});
+        }
+        if ('caches' in window) {
+          caches.keys().then(keys => keys.forEach(k => caches.delete(k))).catch(()=>{});
+        }
+      }
+    });
+  </script>
+</head>
+
+<body class="historique">
+  <div id="ver" class="ver">v<span id="v"></span></div>
+  <!-- Lien utilitaire pendant les tests (optionnel) -->
+  <a class="force-update" href="#" onclick="forceUpdateAndReload();return false;">⚡ Forcer mise à jour</a>
+
+  <div class="wrap">
+    <h1 style="margin-bottom:12px">Éloge — Lettre & Enveloppe</h1>
+
+    <div class="row">
+      <div class="col-2">
+        <label for="segment" class="required">Segment</label>
+        <select id="segment" required>
+          <option value="" selected disabled>— choisir —</option>
+          <option value="historique">Historique</option>
+          <option value="rurale">Rurale</option>
+          <option value="moderne">Moderne</option>
+        </select>
+      </div>
+      <div class="col-2">
+        <label for="civilite">Civilité</label>
+        <select id="civilite">
+          <option value="Madame">Madame</option>
+          <option value="Monsieur">Monsieur</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-2">
+        <label for="nom" class="required">Nom</label>
+        <input id="nom" type="text" required>
+      </div>
+      <div class="col-2">
+        <label for="prenom">Prénom (optionnel)</label>
+        <input id="prenom" type="text">
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-2" style="flex:1 1 100%">
+        <label for="adresse" class="required">Adresse (lignes)</label>
+        <textarea id="adresse" required></textarea>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-2" style="max-width:160px">
+        <label for="cp" class="required">CP</label>
+        <input id="cp" type="text" required>
+      </div>
+      <div class="col-2" style="flex:1">
+        <label for="ville" class="required">Ville</label>
+        <input id="ville" type="text" required>
+      </div>
+      <div class="col-2" style="max-width:200px">
+        <label for="date">Date</label>
+        <input id="date" type="text" placeholder="JJ/MM/AAAA">
+      </div>
+    </div>
+
+    <div class="actions">
+      <button id="btnLettre" type="button">Imprimer la lettre (A4 portrait)</button>
+      <button id="btnEnveloppe" type="button">Imprimer l’enveloppe (A4 paysage)</button>
+      <button id="btnEnvDL" type="button">Imprimer l’enveloppe (DL réel Android)</button>
+    </div>
+  </div>
+</body>
+</html>

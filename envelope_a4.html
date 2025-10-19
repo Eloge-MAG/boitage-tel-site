@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">`r`n  <meta name="app-version" content="2025.10.19-18.19.41">
+  <title>Enveloppe DL (A4 paysage)</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="styles.css?v=2025.10.19-18.19.41">
+  <link rel="stylesheet" href="print-env.css?v=2025.10.19-18.19.41">
+</head>
+<body class="{SEGMENT_CLASS}">
+  <div class="a4-page">
+
+</div></div>
+
+  <!-- Zone DL -->
+  <div class="dl-sheet">
+    <div class="dl-mark tl"><i></i><b></b></div>
+    <div class="dl-mark tr"><i></i><b></b></div>
+    <div class="dl-mark bl"><i></i><b></b></div>
+    <div class="dl-mark br"><i></i><b></b></div>
+
+    <div class="dl-address">
+      {CIVILITE} {NOM} {PRENOM}<br>
+      {ADRESSE}<br>
+      {CP} {VILLE}
+    </div>
+
+    <!-- <div class="dl-sender">MAG Éloge Menuiserie<br>…</div> -->
+  </div>
+  </div>
+
+  <script>
+  (function(){
+    try{
+      if(location.hash && location.hash.length > 1){
+        var json = decodeURIComponent(escape(atob(location.hash.substring(1))));
+        var t = JSON.parse(json || "{}");
+        document.body.className = (t.SEGMENT_CLASS || '').toString();
+        var addr = document.querySelector('.dl-address');
+        if (addr){
+          var civ = t.CIVILITE || ''; var nom = t.NOM || ''; var prenom = t.PRENOM || '';
+          var ad  = t.ADRESSE_HTML || ''; var cp = t.CP || ''; var ville = t.VILLE || '';
+          addr.innerHTML = [ (civ + ' ' + nom + ' ' + prenom).trim(), ad, (cp + ' ' + ville).trim() ].join('<br>');
+        }
+      }
+    }catch(e){ console && console.warn && console.warn('hash render', e); }
+  })();
+  </script>
+
+</body>
+</html>
+
